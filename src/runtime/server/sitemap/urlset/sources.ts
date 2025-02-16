@@ -25,9 +25,8 @@ export async function fetchDataSource(input: SitemapSourceBase | SitemapSourceRe
 
   let isMaybeErrorResponse = false
   const isXmlRequest = parseURL(url).pathname.endsWith('.xml')
-  const fetchContainer = (url.startsWith('/') && event) ? event : globalThis
   try {
-    const res = await fetchContainer.$fetch(url, {
+    const res = await globalThis.$fetch(url, {
       ...options,
       responseType: isXmlRequest ? 'text' : 'json',
       signal: timeoutController.signal,
